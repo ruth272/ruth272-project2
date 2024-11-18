@@ -8,7 +8,7 @@ public class Client{
     public BufferedReader input;
 
     //constructor
-    public Client(String host, int port) {
+    public Client(String host, int port) throws IOException{
         this.socket = new Socket(host,port);
         this.output = new PrintWriter(socket.getOutputStream());
         this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -19,13 +19,13 @@ public class Client{
     }
 
     //sends and recieves messages
-    public String request(int number) {
+    public String request(String number) throws IOException {
         output.println(number);             //sends number to the server
         return input.readLine();            //returns servers response
     }
 
     //disconnects input, output, and socket
-    public void disconnect() {
+    public void disconnect() throws IOException {
         output.close();
         input.close();
         socket.close();
