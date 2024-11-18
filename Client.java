@@ -3,9 +3,9 @@ import java.net.*;
 import java.io.*;
 
 public class Client{
-    public Socket socket;
-    public PrintWriter output;
-    public BufferedReader input;
+    private Socket socket;
+    private PrintWriter output;
+    private BufferedReader input;
 
     //constructor
     public Client(String host, int port) throws IOException{
@@ -16,11 +16,13 @@ public class Client{
 
     public void handshake() {
         output.println("12345");        //client sends this key for validation
+        output.flush();
     }
 
     //sends and recieves messages
     public String request(String number) throws IOException {
         output.println(number);             //sends number to the server
+        output.flush();
         return input.readLine();            //returns servers response
     }
 
