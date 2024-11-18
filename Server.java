@@ -46,7 +46,7 @@ public class Server{
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
                 String msg = in.readLine();
-                if(msg != "12345") {
+                if(!msg.equals("12345")) {
                     out.println("couldn't handshake");
                     out.flush(); 
                     socket.close();
