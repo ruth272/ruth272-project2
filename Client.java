@@ -14,20 +14,26 @@ public class Client{
         this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
-    public class handshake() {
-
+    public void handshake() {
+        output.println("12345");        //client sends this key for validation
     }
 
-    public class request() {
-
+    //sends and recieves messages
+    public String request(int number) {
+        output.println(number);             //sends number to the server
+        return input.readLine();            //returns servers response
     }
 
-    public class disconnect() {
-
+    //disconnects input, output, and socket
+    public void disconnect() {
+        output.close();
+        input.close();
+        socket.close();
     }
 
-    public class getSocket() {
-
+    //getter
+    public Socket getSocket() {
+        return socket;
     }
 
 }
